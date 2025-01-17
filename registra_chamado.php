@@ -1,8 +1,5 @@
 <?php
-
-    echo '<pre>';
-    print_r($_POST);
-    echo '</pre>';
+    session_start();
 
     //estamos trabalhando na montagem do texto
     $titulo = str_replace('#', '-', $_POST['titulo']);
@@ -11,7 +8,7 @@
 
     implode('#', $_POST); //transforma o array em uma string
 
-    $texto = $titulo . '#' . $categoria . '#' . $descricao . '#' . PHP_EOL;
+    $texto = $_SESSION['id'] . '#' . $titulo . '#' . $categoria . '#' . $descricao . '#' . PHP_EOL;
 
     //estamos abrindo o arquivo 
     $arquivo = fopen('arquivo.hd', 'a');
@@ -21,5 +18,6 @@
     fclose($arquivo);
 
     // echo $texto;
+    header('Location: abrir_chamado.php');
 
 ?>
